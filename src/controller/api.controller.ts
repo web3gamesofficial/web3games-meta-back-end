@@ -1,4 +1,4 @@
-import { Inject, Controller, Get, Query,Post } from '@midwayjs/decorator';
+import { Inject, Controller,Post } from '@midwayjs/decorator';
 import { Context } from '@midwayjs/koa';
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
@@ -30,17 +30,7 @@ export class APIController {
   @Inject()
   ctx: Context;
 
-  @Get('/tokenFungible/get_balance')
-  async get_balance(@Query() queryData) {
-    const token_fungible_id = queryData.token_fungible_id;
-    const account_address = queryData.account_address;
 
-    const api = await environment_api();
-
-    const tokenFungible_balance = await api.query.tokenFungible.balances(token_fungible_id,account_address);
-
-    return (tokenFungible_balance.toString());
-  }
 
 
 
